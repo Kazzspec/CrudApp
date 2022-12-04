@@ -47,7 +47,7 @@ app.get('/api/articulos/:id', (req, res) => {
 //Crear un artículo
 app.post('/api/articulos', (req, res) => {
     let data = { descripcion: req.body.descripcion, precio: req.body.precio, stock: req.body.stock }
-    let sql = "INSERT INTO articulos SET ?"
+    let sql = "INSERT INTO cases SET ?"
     conexion.query(sql, data, function (err, result) {
         if (err) {
             throw err
