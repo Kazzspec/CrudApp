@@ -75,7 +75,7 @@ app.put('/api/articulos/:id', (req, res) => {
 })
 //Eliminar articulo
 app.delete('/api/articulos/:id', (req, res) => {
-    conexion.query('DELETE FROM articulos WHERE id = ?', [req.params.id], function (error, filas) {
+    conexion.query('DELETE FROM cases WHERE id = ?', [req.params.id], function (error, filas) {
         if (error) {
             throw error
         } else {

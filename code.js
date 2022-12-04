@@ -32,7 +32,7 @@ const mostrar = (articulos) => {
                             <td>${articulo.caso}</td>
                             <td>${articulo.area}</td>
                             <td>${articulo.descripcion}</td>
-                            <td class="text-center"><button id="bntCrear" type="button" class="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-toggle="modal" data-bs-target="#modalArticulo" >Editar</button><button id="bntCrear" type="button" class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out"  >Borrar</button>
+                            <td class="text-center"><button id="bntCrear" type="button" class="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-toggle="modal" data-bs-target="#modalArticulo" >Editar</button><button id="btnBorrar" type="button" class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out"  >Borrar</button>
                        </tr>
                     `
     })
@@ -45,3 +45,34 @@ fetch(url)
     .then(response => response.json())
     .then(data => mostrar(data))
     .catch(error => console.log(error))
+
+const on = (element, event, selector, handler) => {
+    //console.log(element)
+    //console.log(event)
+    //console.log(selector)
+    //console.log(handler)
+    element.addEventListener(event, e => {
+        if (e.target.closest(selector)) {
+            handler(e)
+        }
+    })
+}
+
+//Procedimiento Borrar
+on(document, 'click', '#btnBorrar', e => {
+    const fila = e.target.parentNode.parentNode
+    const id = fila.firstElementChild.innerHTML
+    alertify.confirm("This is a confirm dialog.",
+        function () {
+            fetch(url + id, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(() => location.reload())
+            //alertify.success('Ok')
+        },
+        function () {
+            alertify.error('Cancel')
+        })
+
+})
