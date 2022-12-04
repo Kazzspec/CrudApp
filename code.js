@@ -4,7 +4,7 @@ const contenedor = document.querySelector('tbody')
 let resultados = ''
 
 const btnClose = document.querySelector("#btnClose");
-const btnCreate = document.querySelector("#btnCreate");
+const btnCrear = document.querySelector("#btnCrear");
 const formArticulo = document.querySelector('form')
 const caso = document.querySelector("#caso");
 const area = document.querySelector("#area");
@@ -12,7 +12,7 @@ const descripcion = document.querySelector("#descripcion");
 var opcion = ''
 
 btnClose.addEventListener("click", emptyCamp);
-btnClose.addEventListener("click", opcionCreate);
+btnCrear.addEventListener("click", opcionCreate);
 
 function emptyCamp() {
     caso.value = "";
@@ -21,6 +21,7 @@ function emptyCamp() {
 }
 
 function opcionCreate() {
+    console.log("Se añade opcion crear")
     opcion = 'crear';
 }
 
