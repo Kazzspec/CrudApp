@@ -104,9 +104,9 @@ formArticulo.addEventListener('submit', (e) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                descripcion: caso.value,
-                precio: area.value,
-                stock: descripcion.value
+                caso: caso.value,
+                area: area.value,
+                descripcion: descripcion.value
             })
         })
             .then(response => response.json())
