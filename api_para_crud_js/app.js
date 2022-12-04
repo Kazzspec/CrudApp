@@ -65,7 +65,7 @@ app.put('/api/articulos/:id', (req, res) => {
     let area = req.body.area
     let descripcion = req.body.descripcion
     let sql = "UPDATE cases SET caso = ?, area = ?, descripcion = ? WHERE id = ?"
-    conexion.query(sql, [descripcion, caso, area, id], function (error, results) {
+    conexion.query(sql, [caso, area, descripcion, id], function (error, results) {
         if (error) {
             throw error
         } else {
