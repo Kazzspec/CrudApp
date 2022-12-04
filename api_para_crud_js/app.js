@@ -61,11 +61,11 @@ app.post('/api/articulos', (req, res) => {
 //Editar articulo
 app.put('/api/articulos/:id', (req, res) => {
     let id = req.params.id
+    let caso = req.body.caso
+    let area = req.body.area
     let descripcion = req.body.descripcion
-    let precio = req.body.precio
-    let stock = req.body.stock
-    let sql = "UPDATE articulos SET descripcion = ?, precio = ?, stock = ? WHERE id = ?"
-    conexion.query(sql, [descripcion, precio, stock, id], function (error, results) {
+    let sql = "UPDATE cases SET caso = ?, area = ?, descripcion = ? WHERE id = ?"
+    conexion.query(sql, [descripcion, caso, area, id], function (error, results) {
         if (error) {
             throw error
         } else {
