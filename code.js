@@ -118,19 +118,19 @@ formArticulo.addEventListener('submit', (e) => {
     }
     if (opcion == 'editar') {
         console.log('OPCION EDITAR')
-        // fetch(url + idForm, {
-        //     method: 'PUT',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify({
-        //         descripcion: descripcion.value,
-        //         precio: precio.value,
-        //         stock: stock.value
-        //     })
-        // })
-        //     .then(response => response.json())
-        //     .then(response => location.reload())
+        fetch(url + idForm, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                caso: caso.value,
+                area: area.value,
+                descripcion: descripcion.value
+            })
+        })
+            .then(response => response.json())
+            .then(response => location.reload())
     }
     // modalArticulo.hide()
 })
