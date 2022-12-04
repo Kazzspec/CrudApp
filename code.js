@@ -5,12 +5,14 @@ let resultados = ''
 
 const btnClose = document.querySelector("#btnClose");
 const btnCrear = document.querySelector("#btnCrear");
+const btnEnviar = document.querySelector('#btnEnviar')
 const formArticulo = document.querySelector('#formModal')
 const caso = document.querySelector("#caso");
 const area = document.querySelector("#area");
 const descripcion = document.querySelector("#descripcion");
 var opcion = ''
 
+btnEnviar.addEventListener('click', validacionForm);
 btnClose.addEventListener("click", emptyCamp);
 btnCrear.addEventListener("click", opcionCreate);
 
@@ -23,6 +25,22 @@ function emptyCamp() {
 function opcionCreate() {
     console.log("Se añade opcion crear")
     opcion = 'crear';
+}
+
+function validacionForm() {
+    console.log("Chequeo de form")
+    valueCaso = caso.value.trim();
+    alertify.confirm("El campo no puede estar en blanco",
+        function () {
+            if (valueCaso == "") {
+                console.log("Datoa blanco")
+
+            }
+            alertify.success('Mariposa');
+        },
+        function () {
+            alertify.error('Cancel');
+        })
 }
 
 //Funcion para mostrar los resultados
@@ -63,17 +81,17 @@ const on = (element, event, selector, handler) => {
 on(document, 'click', '#btnBorrar', e => {
     const fila = e.target.parentNode.parentNode
     const id = fila.firstElementChild.innerHTML
-    alertify.confirm("This is a confirm dialog.",
+    alertify.confirm("¿Esta seguro que desea eliminar este registro?",
         function () {
             fetch(url + id, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
                 .then(() => location.reload())
-            //alertify.success('Ok')
+            // alertify.success('Elimiando')
         },
         function () {
-            alertify.error('Cancel')
+            alertify.error('Cancelado')
         })
 
 })
