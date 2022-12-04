@@ -5,7 +5,7 @@ let resultados = ''
 
 const btnClose = document.querySelector("#btnClose");
 const btnCrear = document.querySelector("#btnCrear");
-const formArticulo = document.querySelector('form')
+const formArticulo = document.querySelector('#formModal')
 const caso = document.querySelector("#caso");
 const area = document.querySelector("#area");
 const descripcion = document.querySelector("#descripcion");
