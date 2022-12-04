@@ -29,7 +29,7 @@ function opcionCreate() {
 const mostrar = (articulos) => {
     articulos.forEach(articulo => {
         resultados += `<tr>
-                            <td>${articulo.id}</td>
+                            <td class="d-none">${articulo.id}</td>
                             <td>${articulo.caso}</td>
                             <td>${articulo.area}</td>
                             <td>${articulo.descripcion}</td>
