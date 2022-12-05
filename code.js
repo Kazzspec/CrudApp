@@ -12,7 +12,7 @@ const area = document.querySelector("#area");
 const descripcion = document.querySelector("#descripcion");
 var opcion = ''
 
-btnEnviar.addEventListener('click', validacionForm);
+btnEnviar.addEventListener('click', checkInput);
 btnClose.addEventListener("click", emptyCamp);
 btnCrear.addEventListener("click", opcionCreate);
 
@@ -27,21 +27,19 @@ function opcionCreate() {
     opcion = 'crear';
 }
 
-function validacionForm() {
-    console.log("Chequeo de form")
-    valueCaso = caso.value.trim();
-    alertify.confirm("El campo no puede estar en blanco",
-        function () {
-            if (valueCaso == "") {
-                console.log("Datoa blanco")
 
-            }
-            alertify.success('Mariposa');
-        },
-        function () {
-            alertify.error('Cancel');
-        })
+function checkInput() {
+    // caso.value = "";
+    // area.value = "";
+    // descripcion.value = "";
+    const casoValue = caso.value
+    const areaValue = area.value
+    const descripcionValue = descripcion.value
+    if (casoValue == "" || areaValue == "" || descripcionValue == "") {
+        alert("Los campos no pueden estar vacios")
+    }
 }
+
 
 //Funcion para mostrar los resultados
 const mostrar = (articulos) => {
