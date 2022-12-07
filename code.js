@@ -23,6 +23,9 @@ function emptyCamp() {
 }
 
 function opcionCreate() {
+    caso.value = "";
+    area.value = "";
+    descripcion.value = "";
     console.log("Se añade opcion crear")
     opcion = 'crear';
 }
@@ -54,6 +57,7 @@ const mostrar = (articulos) => {
                     `
         $(document).ready(function () {
             $('#tablaArticulos').DataTable();
+
         });
     })
     contenedor.innerHTML = resultados
@@ -84,6 +88,8 @@ on(document, 'click', '#btnBorrar', e => {
     const id = fila.firstElementChild.innerHTML
     alertify.confirm("¿Esta seguro que desea eliminar este registro?",
         function () {
+            const mensajeEliminar = document.querySelector(".ajs-header")
+            console.log(mensajeEliminar.value)
             fetch(url + id, {
                 method: 'DELETE'
             })
