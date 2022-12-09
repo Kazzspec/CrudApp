@@ -1,5 +1,11 @@
 body {
-    background-image: url(./assets/img/Diapositiva2.JPG);
+    background-image: url(./assets/img/Presentación2/Diapositiva1.JPG);
+    background-repeat: repeat
+}
+
+.header-color {
+    background: rgb(26, 66, 129);
+    background: linear-gradient(159deg, rgba(26, 66, 129, 1) 0%, rgba(61, 117, 171, 1) 51%, rgba(88, 156, 203, 1) 100%);
 }
 
 .ajs-header {
@@ -14,4 +20,16 @@ body {
 
 .visibility {
     visibility: visible;
+}
+
+.overflow-x-auto {
+    overflow: hidden !important;
+}
+
+.dataTables_info {
+    display: none !important;
+}
+
+.pagination {
+    justify-content: start !important;
 }
