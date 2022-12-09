@@ -63,7 +63,13 @@ const mostrar = (articulos) => {
                        </tr>
                     `
         $(document).ready(function () {
-            $('#tablaArticulos').DataTable();
+            $('#tablaArticulos').DataTable({
+                "bDestroy": true,
+                "columnDefs": [{
+                    "targets": 0,
+                    "searchable": false
+                }]
+            });
         });
     })
     contenedor.innerHTML = resultados
