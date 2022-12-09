@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
     <!-- LINK BOOTSTRAP CSS -->
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <!-- LINK ALERTIFY CSS -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
     <!-- LINK ALERTIFY CSS DEFAULT THEME -->
@@ -27,7 +27,7 @@
         </div>
     </header>
         <main class="container mt-12 w-11/12">
-            <button id="btnCrear" type="button" class="inline-block px-6 py-2.5 mb-3 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-toggle="modal" data-bs-target="#modalArticulo" >Crear</button>
+            <button id="btnCrear" type="button" class="inline-block px-6 py-2.5 mb-3 bg-lime-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-toggle="modal" data-bs-target="#modalArticulo" >Crear</button>
             <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
                 <table id="tablaArticulos" class="w-full bg-white text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-sky-500 uppercase bg-sky-100 dark:bg-gray-700 dark:text-gray-400">
@@ -35,13 +35,13 @@
                             <th scope="col" class="py-3 px-6 d-none">
                                 ID
                             </th>
-                            <th scope="col" class="py-3 px-6">
+                            <th scope="col" class="py-3 px-6 w-auto">
                                 CASO
                             </th>
-                            <th scope="col" class="py-3 px-6">
+                            <th scope="col" class="py-3 px-6 w-auto">
                                 AREA
                             </th>
-                            <th scope="col" class="py-3 px-6">
+                            <th scope="col" class="py-3 px-6 w-auto">
                                 DESCRIPCION
                             </th>
                             <th scope="col" class="w-56 text-center">
@@ -62,25 +62,40 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                    <form id="formModal">
+                    <form id="formModal" class="row bg-3 needs-validation" novalidate>
                       <div class="mb-3">
-                        <label for="recipient-name" class="col-form-label">Caso:</label>
-                        <input id="caso" type="text" class="form-control" id="recipient-name" required>
-                        <small class="text-red-500 inactive">Campo requerido</small>
+                        <label for="caso" class="form-label">Caso:</label>
+                        <input type="text" class="form-control" id="caso" required>
+                        <div class="valid-feedback">
+                            Campos completos
+                        </div>
+                        <div class="invalid-feedback">
+                            Los campos no pueden estar vacios
+                        </div>
                       </div>
                       <div class="mb-3">
-                        <label for="recipient-name" class="col-form-label">Area:</label>
-                        <input id="area" type="text" class="form-control" id="recipient-name" required>
-                        <small class="text-red-500 inactive">Campo requerido</small>
+                        <label for="area" class="form-label">Area:</label>
+                        <input id="area" type="text" class="form-control" required>
+                        <div class="valid-feedback">
+                            Campos completos
+                        </div>
+                        <div class="invalid-feedback">
+                            Los campos no pueden estar vacios
+                        </div>
                       </div>
                       <div class="mb-3">
-                        <label for="message-text" class="col-form-label">Descripción:</label>
-                        <textarea id="descripcion" class="form-control" id="message-text" required></textarea>
-                        <small class="text-red-500 inactive">Campo requerido</small>
+                        <label for="descripcion" class="form-label">Descripción:</label>
+                        <textarea id="descripcion" class="form-control" required></textarea>
+                        <div class="valid-feedback">
+                            Campos completos
+                        </div>
+                        <div class="invalid-feedback">
+                            Los campos no pueden estar vacios
+                        </div>
                       </div>
                       <div class="modal-footer">
                         <button id="btnClose" type="button" class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-dismiss="modal">Cerrar</button>
-                        <button id="btnEnviar" type="submit" class="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-dismiss="modal">Guardar</button>
+                        <button id="btnEnviar" type="submit" class="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" >Guardar</button>
                       </div>
                     </form>
                   </div>
@@ -89,6 +104,7 @@
             </div>
         </main>
     <!-- SCRIPT JAVASCRIPT BOOSTRAP -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <!-- SCRIPT JAVASCRIPT TAILWIND CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -104,5 +120,24 @@
     <script src="code.js"></script>
     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+    <script>// Example starter JavaScript for disabling form submissions if there are invalid fields
+        (() => {
+          'use strict'
+
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          const forms = document.querySelectorAll('.needs-validation')
+
+          // Loop over them and prevent submission
+          Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+              if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+              }
+
+              form.classList.add('was-validated')
+            }, false)
+          })
+        })()</script>
   </body>
 </html>

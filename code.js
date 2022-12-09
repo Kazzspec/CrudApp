@@ -12,7 +12,7 @@ const area = document.querySelector("#area");
 const descripcion = document.querySelector("#descripcion");
 var opcion = ''
 
-btnEnviar.addEventListener('click', checkInput);
+// btnEnviar.addEventListener('click', checkInput);
 btnClose.addEventListener("click", emptyCamp);
 btnCrear.addEventListener("click", opcionCreate);
 
@@ -32,15 +32,9 @@ function opcionCreate() {
 
 
 function checkInput() {
-    // caso.value = "";
-    // area.value = "";
-    // descripcion.value = "";
-    const casoValue = caso.value
-    const areaValue = area.value
-    const descripcionValue = descripcion.value
-    if (casoValue == "" || areaValue == "" || descripcionValue == "") {
-        alert("Los campos no pueden estar vacios")
-    }
+    caso.value = "";
+    area.value = "";
+    descripcion.value = "";
 }
 
 
