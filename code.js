@@ -7,12 +7,14 @@ const btnClose = document.querySelector("#btnClose");
 const btnCrear = document.querySelector("#btnCrear");
 const btnEnviar = document.querySelector('#btnEnviar')
 const formArticulo = document.querySelector('#formModal')
+const miModal = document.querySelector("#modalArticulo")
 const caso = document.querySelector("#caso");
 const area = document.querySelector("#area");
 const descripcion = document.querySelector("#descripcion");
+const shadowModal = document.getElementsByName('show')
 var opcion = ''
 
-// btnEnviar.addEventListener('click', checkInput);
+btnEnviar.addEventListener('click', checkInput);
 btnClose.addEventListener("click", emptyCamp);
 btnCrear.addEventListener("click", opcionCreate);
 
@@ -27,21 +29,32 @@ function opcionCreate() {
     area.value = "";
     descripcion.value = "";
     console.log("Se añade opcion crear")
+    $('#modalArticulo').modal({ show: true });
     opcion = 'crear';
 }
 
 
 function checkInput() {
-    caso.value = "";
-    area.value = "";
-    descripcion.value = "";
-}
 
+    if ((caso.value == "") || (area.value == "") || (descripcion.value == "")) {
+        console.log("Los datos no pueden estar vacios")
+
+    } else {
+        $('#modalArticulo').modal('hide')
+        $('.show').remove();
+        if (opcion == 'crear') {
+            alertify.success('Se crea nuevo caso');
+        }
+        setTimeout(() => {
+            location.reload()
+        }, 2000)
+    }
+}
 
 //Funcion para mostrar los resultados
 const mostrar = (articulos) => {
     articulos.forEach(articulo => {
-        resultados += `<tr class="bg-red-700">
+        resultados += `<tr class="hover:bg-slate-300">
                             <td class="d-none">${articulo.id}</td>
                             <td>${articulo.caso}</td>
                             <td>${articulo.area}</td>
@@ -87,8 +100,11 @@ on(document, 'click', '#btnBorrar', e => {
                 method: 'DELETE'
             })
                 .then(res => res.json())
-                .then(() => location.reload())
-            // alertify.success('Elimiando')
+                .then(() => alertify.success('Mensaje Eliminado'))
+            setTimeout(() => {
+                location.reload()
+            }, 1000)
+
         },
         function () {
             alertify.error('Cancelado')
@@ -115,40 +131,54 @@ on(document, 'click', '#btnEditar', e => {
 formArticulo.addEventListener('submit', (e) => {
     e.preventDefault()
     if (opcion == 'crear') {
-        console.log('OPCION CREAR')
-        fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                caso: caso.value,
-                area: area.value,
-                descripcion: descripcion.value
+        if ((caso.value == "") || (area.value == "") || (descripcion.value == "")) {
+            console.log("Los datos no pueden estar vacios")
+
+        } else {
+            console.log('OPCION CREAR')
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    caso: caso.value,
+                    area: area.value,
+                    descripcion: descripcion.value
+                })
             })
-        })
-            .then(response => response.json())
-            .then(data => {
-                const nuevoArticulo = []
-                nuevoArticulo.push(data)
-                mostrar(nuevoArticulo)
-            })
+                .then(response => response.json())
+                .then(data => {
+                    const nuevoArticulo = []
+                    nuevoArticulo.push(data)
+                    mostrar(nuevoArticulo)
+                })
+        }
     }
+
     if (opcion == 'editar') {
-        console.log('OPCION EDITAR')
-        fetch(url + idForm, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                caso: caso.value,
-                area: area.value,
-                descripcion: descripcion.value
+        if ((caso.value == "") || (area.value == 0) || (descripcion.value == 0)) {
+            console.log("Los datos no pueden estar vacios")
+        } else {
+            console.log('OPCION EDITAR')
+            fetch(url + idForm, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    caso: caso.value,
+                    area: area.value,
+                    descripcion: descripcion.value
+                })
             })
-        })
-            .then(response => response.json())
-            .then(response => location.reload())
+                .then(response => response.json())
+            alertify.success('Mensaje editado de manera exitosa')
+            setTimeout(() => {
+                location.reload()
+            }, 1500)
+        }
+
     }
     // modalArticulo.hide()
 })

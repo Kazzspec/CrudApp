@@ -19,7 +19,7 @@ body {
 }
 
 .visibility {
-    visibility: visible;
+    visibility: hidden;
 }
 
 .overflow-x-auto {
@@ -32,4 +32,11 @@ body {
 
 .pagination {
     justify-content: start !important;
+}
+
+
+@media screen AND (min-width:320px) and (max-width: 1024px) {
+    .overflow-x-auto {
+        overflow: scroll !important;
+    }
 }
