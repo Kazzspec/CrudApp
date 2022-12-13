@@ -148,9 +148,9 @@ formArticulo.addEventListener('submit', (e) => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    caso: caso.value.charAt(0).toUpperCase() + caso.value.slice(1),
-                    area: area.value.charAt(0).toUpperCase() + area.value.slice(1),
-                    descripcion: descripcion.value.charAt(0).toUpperCase() + descripcion.value.slice(1)
+                    caso: caso.value.charAt(0).toUpperCase() + caso.value.slice(1).toLowerCase(),
+                    area: area.value.charAt(0).toUpperCase() + area.value.slice(1).toLowerCase(),
+                    descripcion: descripcion.value.charAt(0).toUpperCase() + descripcion.value.slice(1).toLowerCase()
                 })
             })
                 .then(response => response.json())
@@ -173,9 +173,9 @@ formArticulo.addEventListener('submit', (e) => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    caso: caso.value,
-                    area: area.value,
-                    descripcion: descripcion.value
+                    caso: caso.value.charAt(0).toUpperCase() + caso.value.slice(1).toLowerCase(),
+                    area: area.value.charAt(0).toUpperCase() + area.value.slice(1).toLowerCase(),
+                    descripcion: descripcion.value.charAt(0).toUpperCase() + descripcion.value.slice(1).toLowerCase()
                 })
             })
                 .then(response => response.json())
