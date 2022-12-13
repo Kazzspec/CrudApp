@@ -55,7 +55,7 @@ function checkInput() {
 const mostrar = (articulos) => {
     articulos.forEach(articulo => {
         resultados += `<tr class="hover:bg-slate-300">
-                            <td class="d-none">${articulo.id}</td>
+                            <td class="d-none">${articulo.id}.</td>
                             <td>${articulo.caso}</td>
                             <td>${articulo.area}</td>
                             <td>${articulo.descripcion}</td>
@@ -66,7 +66,7 @@ const mostrar = (articulos) => {
             $('#tablaArticulos').DataTable({
                 "bDestroy": true,
                 "columnDefs": [{
-                    "targets": 0,
+                    "targets": [0, 4],
                     "searchable": false
                 }]
             });
@@ -148,9 +148,9 @@ formArticulo.addEventListener('submit', (e) => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    caso: caso.value,
-                    area: area.value,
-                    descripcion: descripcion.value
+                    caso: caso.value.charAt(0).toUpperCase() + caso.value.slice(1),
+                    area: area.value.charAt(0).toUpperCase() + area.value.slice(1),
+                    descripcion: descripcion.value.charAt(0).toUpperCase() + descripcion.value.slice(1)
                 })
             })
                 .then(response => response.json())
